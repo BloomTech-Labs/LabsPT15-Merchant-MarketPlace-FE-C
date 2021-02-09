@@ -21,7 +21,16 @@ function MainNavBar() {
             activeStyle={{ color: 'white' }}
             to="/myprofile"
           >
-            My Profile
+            Seller Profile
+          </NavLink>
+        )}
+        {authState.isAuthenticated && (
+          <NavLink
+            className="link"
+            activeStyle={{ color: 'white' }}
+            to="/buyerprofile"
+          >
+            Buyer Profile
           </NavLink>
         )}
         {authState.isAuthenticated && (

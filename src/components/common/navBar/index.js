@@ -17,6 +17,7 @@ function NavBar({ searchVisible, data, setData }) {
             <span style={{ color: 'rebeccapurple' }}>MERCHANT</span> MARKETPLACE
           </NavLink>
         </div>
+        <Link to="/buyerprofile">Buyer Profile</Link>
         <Link to="/myprofile/inventory">Inventory</Link>
         <Link>Orders</Link>
         <Link>Payment</Link>
