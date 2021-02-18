@@ -29,6 +29,7 @@ import { TestItemImageUpload } from './components/common';
 
 // Buyer Imports
 import BuyerProfile from './components/buyerPages/buyerProfile';
+import ShoppingCart from './components/common/shoppingCart/ShoppingCart';
 
 const store = createStore(reducer, compose(applyMiddleware(thunk)));
 
@@ -80,6 +81,7 @@ function App() {
             return <ProductPage match={routeProps.match} />;
           }}
         />
+        <SecureRoute path="/myprofile/shoppingcart" component={ShoppingCart} />
         <SecureRoute
           exact
           path="/test_image_upload"
