@@ -29,6 +29,7 @@ import { TestItemImageUpload } from './components/common';
 
 // Buyer Imports
 import BuyerProfile from './components/buyerPages/buyerProfile';
+import LetsShop from './components/buyerPages/letsShop';
 
 const store = createStore(reducer, compose(applyMiddleware(thunk)));
 
@@ -84,6 +85,11 @@ function App() {
           exact
           path="/test_image_upload"
           component={TestItemImageUpload}
+        />
+        <SecureRoute
+          exact
+          path="/buyerprofile/lets_shop"
+          component={LetsShop}
         />
         <Route component={NotFoundPage} />
       </Switch>
