@@ -9,7 +9,6 @@ svg{
 
 .buyer-nav-container{
     background-color: rebeccapurple;
-    position: fixed;
     width: 100%;
     top: 0;
     z-index: 4;
@@ -40,4 +39,6 @@ svg{
     justify-content: space-evenly;
 }
 
-
+.searchBtns{
+    position: fixed;
+}
