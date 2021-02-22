@@ -1,9 +1,8 @@
+import { fetchProducts } from '../../../../../state/actions';
+import SmallItemCard from '../../../../common/cards/smallItem';
 import { useOktaAuth } from '@okta/okta-react/src/OktaContext';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-
-import { fetchProducts } from '../../../../../state/actions';
-import SmallItemCard from '../../../../common/cards/smallItem';
 
 function InvSection({ inventory, fetchProducts, getProductsStatus }) {
   const { authState } = useOktaAuth();
@@ -13,7 +12,6 @@ function InvSection({ inventory, fetchProducts, getProductsStatus }) {
   }, []);
 
   console.log(inventory);
-
   return (
     <>
       <h2>Inventory</h2>
