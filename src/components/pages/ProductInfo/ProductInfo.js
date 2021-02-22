@@ -2,7 +2,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import React, { useEffect, useState } from 'react';
 import { getDSData } from '../../../api';
 import ProductCarousel from '../ProductPage/ProductCarousel';
-import { Rate, Avatar, Tag } from 'antd';
+import { Rate, Avatar, Tag, InputNumber, Button } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
 
 const ProductInfo = ({ item }) => {
@@ -18,6 +18,7 @@ const ProductInfo = ({ item }) => {
   useEffect(() => {
     imgGet(item.id);
   }, []);
+  console.log(item);
 
   let dollars = item.price_in_cents / 100;
   return (
@@ -50,6 +51,8 @@ const ProductInfo = ({ item }) => {
               <h2 style={{ color: 'red' }}>QTY: {item.quantity_available}</h2>
             )}
           </section>
+          <InputNumber size="small" min={0} defaultValue={1} />
+          <Button>Add to cart</Button>
         </div>
       </div>
       <section className="tags-container">

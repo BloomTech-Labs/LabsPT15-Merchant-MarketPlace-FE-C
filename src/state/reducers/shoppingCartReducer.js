@@ -5,25 +5,24 @@ import {
   SHOPPING_CART_EDIT_START,
   SHOPPING_CART_EDIT_END,
 } from '../actions/index';
-import cartReducer from '../../utils/cartQuantityReducer';
 
 const initialState = {
   cart: [
     {
       id: 1,
-      name: 'Persian rug',
-      Desc: 'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
+      item_name: 'Persian rug',
+      desc: 'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
       quantity: 3,
-      prince_in_cents: 3400000,
+      price_in_cents: 3400000,
       published: true,
       seller_id: '00ulthapbErVUwVJy4x6',
     },
     {
       id: 1,
-      name: 'Persian rug',
-      Desc: 'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
-      quantity: 2,
-      prince_in_cents: 3400000,
+      item_name: 'Persian rug',
+      desc: 'Fancy rug! Great pattern! Perfect for living room, wall or sauna!',
+      quantity: 4,
+      price_in_cents: 3400000,
       published: true,
       seller_id: '00ulthapbErVUwVJy4x6',
     },
