@@ -1,13 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function LetsShopSection() {
+const LetsShopSection = () => {
   return (
-    <>
-      <div className="letsShopHeader">
+    <div>
+      <section className="letsShopHeader">
         <h2>Lets Shop</h2>
-      </div>
-    </>
+        <div className="browse-bar">
+          {' '}
+          <Link to="/buyerprofile/lets_shop">Lets Go Shopping</Link>
+        </div>
+      </section>
+    </div>
   );
-}
+};
 
 export default LetsShopSection;

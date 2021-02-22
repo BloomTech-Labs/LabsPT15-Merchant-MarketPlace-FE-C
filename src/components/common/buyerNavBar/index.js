@@ -14,7 +14,7 @@ function BuyerNavBar({ searchVisible, data, setData }) {
           </NavLink>
         </div>
         <Link to="/myprofile">Seller Profile</Link>
-        <Link>Let's Shop</Link>
+        <Link to="/buyerprofile/lets_shop">Let's Shop</Link>
         <Link>Orders</Link>
         <Link>Favorites</Link>
       </div>

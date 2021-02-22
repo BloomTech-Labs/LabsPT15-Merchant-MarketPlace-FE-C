@@ -1,0 +1,233 @@
+[33mcommit 708d9e74684e346b78a1d1cc88edac95f8b1d195[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: cab770a ffd0fe3
+Author: BrianM-218 <44649140+BrianM-218@users.noreply.github.com>
+Date:   Sun Feb 21 21:58:54 2021 -0500
+
+    Merge pull request #6 from Lambda-School-Labs/Aaron-Yates
+    
+    Aaron yates
+
+[33mcommit ffd0fe3f1a25ffa85202586a4da77a6cb5907855[m[33m ([m[1;31morigin/Aaron-Yates[m[33m)[m
+Merge: e9b0747 cab770a
+Author: BrianM-218 <44649140+BrianM-218@users.noreply.github.com>
+Date:   Sun Feb 21 21:57:09 2021 -0500
+
+    Merge branch 'main' into Aaron-Yates
+
+[33mcommit cab770a005350b7d66bc2b58bde27c2e7540aa68[m
+Merge: 4e4162c 59b86df
+Author: BrianM-218 <44649140+BrianM-218@users.noreply.github.com>
+Date:   Sun Feb 21 21:53:14 2021 -0500
+
+    Merge pull request #5 from Lambda-School-Labs/feature_lets-shop_page
+    
+    Feature lets shop page
+
+[33mcommit 4e4162c6b4bba361f94716bf56f7c6dabe147f80[m
+Merge: ee8f03d 07f83e0
+Author: BrianM-218 <44649140+BrianM-218@users.noreply.github.com>
+Date:   Sun Feb 21 21:51:27 2021 -0500
+
+    Merge pull request #4 from Lambda-School-Labs/feature_AddItem
+    
+    Made some changes to get the add item feature to work
+
+[33mcommit e9b07471807bfe95f750510a0b5736fd441364a1[m
+Author: Aaron Yates <aaronmyates@hotmail.com>
+Date:   Fri Feb 19 20:07:24 2021 -0500
+
+    fixed overlapping navbar issue located in buyerNavStyles by removing position: fixed; from container div. Also, looks like the previous team tried to account for no searchData being provided to the useSearch custom hook, but didn't handle cases where it was undefined. I added the necessary logic to make it functional.
+
+[33mcommit 59b86dffc3b09eeab1a30db234bf32cb09eb1026[m[33m ([m[1;31morigin/feature_lets-shop_page[m[33m)[m
+Author: Desi Curry <Blackice@Desis-MacBook-Air.local>
+Date:   Fri Feb 19 14:40:29 2021 -0500
+
+    Basic Lets Shop page set up. Just need to work on search feature
+
+[33mcommit 07f83e0a7b6ed5af9c21c68986230e2c955acc1c[m[33m ([m[1;31morigin/feature_AddItem[m[33m)[m
+Author: Desi Curry <Blackice@Desis-MacBook-Air.local>
+Date:   Thu Feb 18 22:59:37 2021 -0500
+
+    Made some changes to get the add item feature to work
+
+[33mcommit 067f82e3c3cf40ef25f4cb85a49a8fa701d632da[m
+Author: Aaron Yates <aaronmyates@hotmail.com>
+Date:   Thu Feb 18 17:24:14 2021 -0500
+
+    connected navcart component to shoppingcart state reducer to display number of items in cart. Also created a helper function in utils/cartQuantityReducer.js to assist with the calculation.
+
+[33mcommit 1709e2d5310c0924ae3d6d3915e2a7099ceac73e[m
+Author: Aaron Yates <julia@Julias-MacBook-Air.local>
+Date:   Thu Feb 18 15:20:10 2021 -0500
+
+    created cart icon for navbar and implemented a redux-like flow for consistency even though the cart is actually being managed by localstorage instead of request calls.
+
+[33mcommit ee8f03d913f90fdef3b340fdb1549e070faba292[m
+Merge: c497b80 6813ca5
+Author: Joshua Chinchilla <59902816+JChinchilla91@users.noreply.github.com>
+Date:   Mon Feb 8 19:28:48 2021 -0800
+
+    Merge pull request #3 from Lambda-School-Labs/buyers-dashboard
+    
+    Added components for buyers dashboard
+
+[33mcommit 6813ca502bfba96fbe74b545e1c68598eba85735[m[33m ([m[1;31morigin/buyers-dashboard[m[33m)[m
+Author: Desi Curry <Blackice@Desis-MacBook-Air.local>
+Date:   Mon Feb 8 21:57:31 2021 -0500
+
+    Added .env.example file to correct errors
+
+[33mcommit b4462f979118ec48f5f7001ec265835399ee7dd3[m
+Author: Desi Curry <Blackice@Desis-MacBook-Air.local>
+Date:   Mon Feb 8 18:07:07 2021 -0500
+
+    Added components for buyers dashboard
+
+[33mcommit c497b8075ef5273dccc7d29a81b77a3ead9c5915[m
+Merge: a7ef803 f86c66b
+Author: Joshua Chinchilla <59902816+JChinchilla91@users.noreply.github.com>
+Date:   Tue Feb 2 19:40:11 2021 -0800
+
+    Merge pull request #2 from Lambda-School-Labs/trouble-add-item
+    
+    debugged Add Item button
+
+[33mcommit f86c66b5b9705eddeb857c0bbad521d39c32638f[m
+Author: Desi Curry <Blackice@Desis-MacBook-Air.local>
+Date:   Tue Feb 2 21:16:13 2021 -0500
+
+    debuged Add Item button
+
+[33mcommit a7ef80350c291efd2010f2762df6425045ee10f0[m
+Merge: b959053 c6d574f
+Author: Jason Hemann <43769789+JasonRHemann@users.noreply.github.com>
+Date:   Mon Feb 1 20:47:14 2021 -0800
+
+    Merge pull request #1 from Lambda-School-Labs/Update/Title
+    
+    Updated Title
+
+[33mcommit c6d574f451bfb7be89c82f95a3a786a7507afa59[m
+Author: Desi Curry <Blackice@Desis-MacBook-Air.local>
+Date:   Mon Feb 1 23:17:19 2021 -0500
+
+    Updated Title
+
+[33mcommit b9590535980bd570b5b8d1e5052e39a271a82126[m[33m ([m[1;32mmain[m[33m)[m
+Author: Jake Mallory <4095+tinomen@users.noreply.github.com>
+Date:   Tue Jan 12 23:21:06 2021 -0700
+
+    update README
+
+[33mcommit b0d4212efeab65150ee155600834fc83aaca3ce9[m
+Merge: 5bfb631 568dd2d
+Author: Andrei Lysenko <57161609+aply333@users.noreply.github.com>
+Date:   Wed Jan 6 18:37:17 2021 -0800
+
+    Merge pull request #18 from Lambda-School-Labs/feature/params
+    
+    fix
+
+[33mcommit 568dd2d6d4940a2a87bab3d06c23f9131ec044bb[m
+Author: Pedro Revilla Meza <pedrorevillameza@Pedros-MacBook-Air.local>
+Date:   Wed Jan 6 20:31:43 2021 -0600
+
+    fix
+
+[33mcommit 5bfb6312bc4ea63bc9806da851c87bf1d5c4b25b[m
+Merge: cc88616 96079ad
+Author: Jason Hemann <43769789+JasonRHemann@users.noreply.github.com>
+Date:   Wed Jan 6 20:04:56 2021 -0600
+
+    Merge pull request #17 from Lambda-School-Labs/feature/params
+    
+    Feature/params
+
+[33mcommit 96079ad8d844a1a773b153b2beb5d1dca810e518[m
+Author: IT2 <it2@AWT.local>
+Date:   Wed Jan 6 11:52:50 2021 -0600
+
+    fix price
+
+[33mcommit 1e068399a9e4b912207f71dd990cc8e688cc5643[m
+Author: IT2 <it2@AWT.local>
+Date:   Wed Jan 6 11:18:55 2021 -0600
+
+    added link to product page using react-router params
+
+[33mcommit 6851e03e47109ade3a81e673e5b5886fe4a5e818[m
+Author: IT2 <it2@AWT.local>
+Date:   Wed Jan 6 10:00:51 2021 -0600
+
+    adding some style to landing
+
+[33mcommit cc88616eb24d3638f0c7ed39b573cd6cf6ef4a03[m
+Merge: 3fc399a 382456e
+Author: Pedro Revilla <47826392+peterevilla@users.noreply.github.com>
+Date:   Tue Jan 5 22:52:13 2021 -0600
+
+    Merge pull request #16 from Lambda-School-Labs/inventoryImages
+    
+    Temporary fix
+
+[33mcommit 382456ec5edcf2fcd6f8c9fd70c96b7d6cc722e8[m
+Author: Andrei Lysenko <andrei.lysenko@outlook.com>
+Date:   Tue Jan 5 20:48:44 2021 -0800
+
+    Temporary fix
+    We added a fetch funtion to the item cards. That way they display the correct image with each car.
+
+[33mcommit 3fc399a43c31e5e5e76714469b9f788033074f2d[m
+Merge: 7e2f34c 3f31466
+Author: Jordan Devaney <jordandevaney28@gmail.com>
+Date:   Tue Jan 5 22:20:55 2021 -0500
+
+    Merge pull request #15 from Lambda-School-Labs/userId-fix
+    
+    Connected backend url
+
+[33mcommit 3f3146626d3b025d8fbeace869fb97bed9c4228b[m
+Merge: b406969 7e2f34c
+Author: Jordan Devaney <jordandevaney28@gmail.com>
+Date:   Tue Jan 5 22:18:55 2021 -0500
+
+    Merge branch 'main' into userId-fix
+
+[33mcommit 7e2f34cef6bd81c55ac7c587d6771bc55750ede3[m
+Merge: 4c8dab8 e03a3d9
+Author: Andrei Lysenko <57161609+aply333@users.noreply.github.com>
+Date:   Tue Jan 5 19:14:44 2021 -0800
+
+    Merge pull request #13 from Lambda-School-Labs/styling/nav-bar
+    
+    fixed nav-bar styling for seller pages
+
+[33mcommit 4c8dab8a69f7b22ae0da65cc14b314652e628e1c[m
+Merge: 93b33c7 51d10af
+Author: Andrei Lysenko <57161609+aply333@users.noreply.github.com>
+Date:   Tue Jan 5 19:13:48 2021 -0800
+
+    Merge pull request #14 from Lambda-School-Labs/feature/photo_uploads
+    
+    Feature: Photo Uploads
+
+[33mcommit b40696938637655c8f4c6411de03636ab2c9e778[m
+Author: Andrei Lysenko <andrei.lysenko@outlook.com>
+Date:   Tue Jan 5 19:09:02 2021 -0800
+
+    Connected backend url
+    now it will change according to which user logs in
+
+[33mcommit 51d10af3339b93c5739131013dc47843684423f9[m
+Author: Nicholas Mullen <nwmullen@gmail.com>
+Date:   Tue Jan 5 21:37:12 2021 -0500
+
+    fix - classname bug
+
+[33mcommit b16853beba2e5b3928acdf0c5644ee763c4282d2[m
+Author: Nicholas Mullen <nwmullen@gmail.com>
+Date:   Tue Jan 5 20:42:30 2021 -0500
+
+    Implements different file upload interfaces
+
+[33mcommit e03a3d9
