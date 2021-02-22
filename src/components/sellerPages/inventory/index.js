@@ -7,32 +7,39 @@ import AddPhotos from './newItem/photos';
 import Finalize from './newItem/review_product';
 import ProgressBar from '../../common/progressBar/progressBar';
 import NavBar from '../../common/navBar';
-import { addProduct } from '../../../state/actions/index';
+import { addProduct, addItemImage } from '../../../state/actions/index';
 import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 
-function Inventory({ status, addProduct }) {
+function Inventory({ addProduct, addItemImage }) {
   const { authState } = useOktaAuth();
-  // Final Data State
-  const [newItemData, setNewItemData] = useState({});
 
   // State for each form section
   const [mainInfo, setMainInfo] = useState({});
   const [specForm, setSpecForm] = useState({});
-  const [photos, setPhotos] = useState({});
+  const [photo, setPhoto] = useState(
+    'http://superprosamui.com/2016/wp-content/plugins/ap_background/images/default/default_large.png'
+  );
+  const [published, setPublished] = useState(true);
 
-  const formCosolidate = () => {
+  const formConsolidate = async () => {
     let completeObject = {
-      ...mainInfo,
-      ...specForm,
-      ...photos,
+      item: {
+        ...mainInfo,
+        published,
+      },
+      spec: {
+        ...specForm,
+      },
     };
-    setNewItemData(completeObject); //// I will review this later, I dont think we need a state here, we can just pass the object to the addProduct action-Pedro
-    addProduct(newItemData, authState);
+    addProduct(completeObject, authState).then(response => {
+      console.log(response);
+      addItemImage(authState, response.id, photo);
+    });
   };
 
   // Progress Bar Sync
-  const [progressPoint, setProgressPoint] = useState(1);
+  const [progressPoint, setProgressPoint] = useState(0);
   const [progressStatus, setProgressStatus] = useState('active');
 
   // Form Pointer for antD
@@ -58,33 +65,22 @@ function Inventory({ status, addProduct }) {
             <AddPhotos
               slider={slider}
               setProgress={setProgressPoint}
-              setData={setPhotos}
+              setPhoto={setPhoto}
             />
             <Finalize
               slider={slider}
               setStatus={setProgressStatus}
               setProgress={setProgressPoint}
-              formCosolidate={formCosolidate}
+              formConsolidate={formConsolidate}
+              mainInfo={mainInfo}
+              specForm={specForm}
+              photo={photo}
+              setPublished={setPublished}
             />
           </Carousel>
         </div>
-
-        <Button
-          onClick={() => {
-            console.log(mainInfo);
-            console.log(specForm);
-            console.log(photos);
-            console.log('final object:', newItemData);
-          }}
-        >
-          Console Log
-        </Button>
       </div>
     </>
   );
 }
-const mapStateToProps = state => ({
-  status: state.addProduct.getAddProductStatus, //We could use this status to see the status of the api call post request
-});
-
-export default connect(mapStateToProps, { addProduct })(Inventory);
+export default connect(null, { addProduct, addItemImage })(Inventory);
