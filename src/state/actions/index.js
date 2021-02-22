@@ -41,14 +41,6 @@ export const ADD_ITEM_IMAGE_START = 'ADD_ITEM_IMAGE_START';
 export const ADD_ITEM_IMAGE_SUCCESS = 'ADD_ITEM_IMAGE_SUCCESS';
 export const ADD_ITEM_IMAGE_ERROR = 'ADD_ITEM_IMAGE_ERROR';
 
-
-export const FETCH_SHOPPING_CART_START = 'FETCH_SHOPPING_CART_START';
-export const FETCH_SHOPPING_CART_END = 'FETCH_SHOPPING_CART_END';
-
-export const SHOPPING_CART_EDIT_START = 'SHOPPING_CART_EDIT_START';
-export const SHOPPING_CART_EDIT_END = 'SHOPPING_CART_EDIT_END';
-
-
 export const ADD_ITEM_TAG_START = 'ADD_ITEM_TAG_START';
 export const ADD_ITEM_TAG_SUCCESS = 'ADD_ITEM_TAG_SUCCESS';
 export const ADD_ITEM_TAG_ERROR = 'ADD_ITEM_TAG_ERROR';
@@ -62,13 +54,12 @@ export const ADD_TAGS_SUCCESS = 'ADD_TAGS_SUCCESS';
 export const ADD_TAGS_ERROR = 'ADD_TAGS_ERROR';
 
 // Get the list of all products
-
 export const fetchProducts = authState => dispatch => {
   let oktaStore = JSON.parse(localStorage['okta-token-storage']);
   let oktaId = oktaStore.idToken.claims.sub;
   dispatch({ type: FETCH_PRODUCTS_START });
   getDSData(
-    `${process.env.REACT_APP_API_URI}/items/profile/${oktaId}`,
+    `${process.env.REACT_APP_API_URI}items/profile/${oktaId}`,
     authState
   )
     .then(response => {
@@ -255,28 +246,4 @@ export const deleteItemTags = (authState, itemId) => dispatch => {
       dispatch({ type: DELETE_ITEM_TAGS_ERROR, payload: err });
       return err;
     });
-};
-
-// I decided to mimic request like behavior for the cart like this in order to keep consistent with our Redux flow.
-// It was either create an anti pattern by interacting with our data management in a way inconsistent with the rest
-// Or implement it in mimicry of the rest of the data implementations by making the shopping cart state a redundant
-// extension of the localstorage. I decided that being redundant and consistent was better for maintainability.
-
-export const fetchShoppingCart = dispatch => {
-  dispatch({ type: FETCH_SHOPPING_CART_START });
-
-  const fetchCart = async () => {
-    var cart = await localStorage.getItem('active_cart');
-    return cart ? cart : [];
-  };
-
-  dispatch({ type: FETCH_SHOPPING_CART_END, payload: JSON.parse(fetchCart) });
-};
-
-export const editShoppingCart = newCart => dispatch => {
-  dispatch({ type: SHOPPING_CART_EDIT_START });
-
-  localStorage.setItem('active_cart', JSON.stringify(newCart));
-
-  dispatch({ type: SHOPPING_CART_EDIT_END, payload: newCart });
 };

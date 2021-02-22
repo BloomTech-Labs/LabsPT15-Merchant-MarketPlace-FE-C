@@ -1,5 +1,5 @@
 export default function useSearch(initialData, catagory, searchData) {
-  if (searchData && searchData.length > 0) {
+  if (searchData.length > 0) {
     const test = [];
     initialData.map(item => {
       if (item[catagory].includes(searchData)) {
