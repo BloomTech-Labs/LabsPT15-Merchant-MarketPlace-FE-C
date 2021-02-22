@@ -22,14 +22,18 @@ import Landing from './components/pages/Landing/Landing';
 
 // Seller Imports
 import SellerProfile from './components/sellerPages/profile';
-import Inventory from './components/sellerPages/inventory/newItem/main_info';
+import Inventory from './components/sellerPages/inventory';
 import CurrentInventory from './components/sellerPages/inventory/current';
 import { ProductPage } from './components/pages/ProductPage';
 import { TestItemImageUpload } from './components/common';
 
 // Buyer Imports
 import BuyerProfile from './components/buyerPages/buyerProfile';
+
 import ShoppingCart from './components/common/shoppingCart/ShoppingCart';
+
+import LetsShop from './components/buyerPages/letsShop';
+
 
 const store = createStore(reducer, compose(applyMiddleware(thunk)));
 
@@ -86,6 +90,11 @@ function App() {
           exact
           path="/test_image_upload"
           component={TestItemImageUpload}
+        />
+        <SecureRoute
+          exact
+          path="/buyerprofile/lets_shop"
+          component={LetsShop}
         />
         <Route component={NotFoundPage} />
       </Switch>

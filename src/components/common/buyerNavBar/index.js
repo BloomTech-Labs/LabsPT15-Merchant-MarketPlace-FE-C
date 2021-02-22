@@ -14,6 +14,7 @@ function BuyerNavBar({ searchVisible, data, setData }) {
             <span style={{ color: 'rebeccapurple' }}>MERCHANT</span> MARKETPLACE
           </NavLink>
         </div>
+
         <div className="navbar-links">
           <Link to="/myprofile">Seller Profile</Link>
           <Link to="#">Let's Shop</Link>
@@ -22,6 +23,12 @@ function BuyerNavBar({ searchVisible, data, setData }) {
         </div>
 
         <NavCart />
+
+        <Link to="/myprofile">Seller Profile</Link>
+        <Link to="/buyerprofile/lets_shop">Let's Shop</Link>
+        <Link>Orders</Link>
+        <Link>Favorites</Link>
+
       </div>
     </div>
   );
