@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import MainNavBar from '../../common/mainNavBar';
 import './landing.css';
 import BrowserBar from '../../common/browserBar';
+import { useOktaAuth } from '@okta/okta-react/src/OktaContext';
+import { fetchShoppingCart } from '../../../state/actions';
 
-const Landing = () => {
+function Landing(props) {
+  const { authState } = useOktaAuth();
+
+  //  the use effect call is to populate the cart state upon login.
+  //  due to the decision to hand off auth logic to Okta completely, including token logic, I had trouble incorporating
+  //  the action into the login process. This was the next best step I could think of off the cuff. Might incorporate
+  //  fetched flag state logic to prevent multiple calls.
+  useEffect(() => {
+    console.log(authState);
+    if (authState.isAuthenticated) {
+      props.fetchShoppingCart();
+    }
+  }, [authState]);
+
   return (
     <div>
       <MainNavBar />
@@ -23,6 +39,6 @@ const Landing = () => {
       </section>
     </div>
   );
-};
+}
 
-export default Landing;
+export default connect(null, { fetchShoppingCart })(Landing);

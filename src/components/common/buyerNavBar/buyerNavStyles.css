@@ -1,3 +1,11 @@
+svg{
+    width: 2rem;
+    height: 1.8rem;
+}
+
+.ant-badge{
+    margin: 0 5%;
+}
 
 .buyer-nav-container{
     background-color: rebeccapurple;
@@ -11,7 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 50%;
+    width: 100%;
 }
 
 .logo{
@@ -24,4 +32,10 @@
     font-weight: 400;
     color: black;
     font-size: smaller
+}
+
+.navbar-links{
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
 }

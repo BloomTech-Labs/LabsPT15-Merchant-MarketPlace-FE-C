@@ -9,7 +9,7 @@ const ProductInfo = ({ item }) => {
   const [img, setImg] = useState('');
   const { authState } = useOktaAuth();
   const imgGet = id => {
-    getDSData(`${process.env.REACT_APP_API_URI}photo/${id}`, authState)
+    getDSData(`${process.env.REACT_APP_API_URI}/photo/${id}`, authState)
       .then(res => setImg(res[0]['url']))
       .catch(err => {
         console.log('Img get fail.');
@@ -19,6 +19,8 @@ const ProductInfo = ({ item }) => {
     imgGet(item.id);
   }, []);
   console.log(item);
+
+  const addToCart = () => {};
 
   let dollars = item.price_in_cents / 100;
   return (

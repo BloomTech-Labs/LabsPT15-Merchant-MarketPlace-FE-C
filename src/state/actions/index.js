@@ -53,13 +53,19 @@ export const ADD_TAGS_START = 'ADD_TAGS_START';
 export const ADD_TAGS_SUCCESS = 'ADD_TAGS_SUCCESS';
 export const ADD_TAGS_ERROR = 'ADD_TAGS_ERROR';
 
+export const FETCH_SHOPPING_CART_START = 'FETCH_SHOPPING_CART_START';
+export const FETCH_SHOPPING_CART_END = 'FETCH_SHOPPING_CART_END';
+
+export const SHOPPING_CART_EDIT_START = 'SHOPPING_CART_EDIT_START';
+export const SHOPPING_CART_EDIT_END = 'SHOPPING_CART_EDIT_END';
+
 // Get the list of all products
 export const fetchProducts = authState => dispatch => {
   let oktaStore = JSON.parse(localStorage['okta-token-storage']);
   let oktaId = oktaStore.idToken.claims.sub;
   dispatch({ type: FETCH_PRODUCTS_START });
   getDSData(
-    `${process.env.REACT_APP_API_URI}items/profile/${oktaId}`,
+    `${process.env.REACT_APP_API_URI}/items/profile/${oktaId}`,
     authState
   )
     .then(response => {
@@ -74,7 +80,10 @@ export const fetchSellerProfile = authState => dispatch => {
   let oktaStore = JSON.parse(localStorage['okta-token-storage']);
   let oktaId = oktaStore.idToken.claims.sub;
   dispatch({ type: FETCH_SELLER_INFO_START });
-  getProfileData(`${process.env.REACT_APP_API_URI}profile/${oktaId}`, authState)
+  getProfileData(
+    `${process.env.REACT_APP_API_URI}/profile/${oktaId}`,
+    authState
+  )
     .then(response => {
       dispatch({ type: FETCH_SELLER_INFO_SUCCESS, payload: response });
     })
@@ -89,7 +98,7 @@ export const updateSellerProfile = (newData, authState) => dispatch => {
 
   dispatch({ type: UPDATE_SELLER_INFO_START });
   putData(
-    `${process.env.REACT_APP_API_URI}profile`,
+    `${process.env.REACT_APP_API_URI}/profile`,
     { ...newData, id: oktaId },
     authState
   )
@@ -107,7 +116,7 @@ export const updateSellerProfile = (newData, authState) => dispatch => {
 // Get the list of all tags available to be added to a product
 export const fetchTags = authState => dispatch => {
   dispatch({ type: FETCH_TAGS_START });
-  return getDSData(`${process.env.REACT_APP_API_URI}tags`, authState)
+  return getDSData(`${process.env.REACT_APP_API_URI}/tags`, authState)
     .then(response => {
       dispatch({ type: FETCH_TAGS_SUCCESS, payload: response });
       return response;
@@ -120,7 +129,7 @@ export const fetchTags = authState => dispatch => {
 
 export const fetchItemPhotos = (authState, itemId) => dispatch => {
   dispatch({ type: FETCH_ITEM_PHOTOS_START });
-  getDSData(`${process.env.REACT_APP_API_URI}photos/${itemId}`, authState)
+  getDSData(`${process.env.REACT_APP_API_URI}/photos/${itemId}`, authState)
     .then(response => {
       dispatch({ type: FETCH_ITEM_PHOTOS_SUCCESS, payload: response });
     })
@@ -134,7 +143,7 @@ export const addItemImage = (authState, itemId, photoUrl) => dispatch => {
   dispatch({ type: ADD_ITEM_IMAGE_START });
 
   postData(
-    process.env.REACT_APP_API_URI + 'photos',
+    process.env.REACT_APP_API_URI + '/photos',
     {
       url: photoUrl,
       item_id: itemId,
@@ -155,7 +164,7 @@ export const addItemTag = (authState, itemId, tagId) => dispatch => {
   dispatch({ type: ADD_ITEM_TAG_START });
 
   postData(
-    `${process.env.REACT_APP_API_URI}items/${itemId}/tag/${tagId}`,
+    `${process.env.REACT_APP_API_URI}/items/${itemId}/tag/${tagId}`,
     {
       tag_id: tagId,
       item_id: itemId,
@@ -175,7 +184,7 @@ export const addTag = (authState, tag_name) => dispatch => {
   dispatch({ type: ADD_TAGS_START });
 
   return postData(
-    process.env.REACT_APP_API_URI + 'tags',
+    process.env.REACT_APP_API_URI + '/tags',
     {
       tag_name: tag_name,
     },
@@ -198,7 +207,7 @@ export const addProduct = (newProduct, authState) => dispatch => {
   const seller_profile_id = oktaStore.idToken.claims.sub;
   dispatch({ type: ADD_PRODUCT_START });
   return postData(
-    process.env.REACT_APP_API_URI + 'item',
+    process.env.REACT_APP_API_URI + '/item',
     { ...newProduct.item, seller_profile_id },
     authState
   )
@@ -215,7 +224,7 @@ export const addProduct = (newProduct, authState) => dispatch => {
 export const updateProduct = (updatedProduct, authState) => dispatch => {
   dispatch({ type: UPDATE_PRODUCT_START });
   putData(
-    `${process.env.REACT_APP_API_URI}item/${updatedProduct.id}`,
+    `${process.env.REACT_APP_API_URI}/item/${updatedProduct.id}`,
     {
       item_name: updatedProduct.item_name,
       quantity_available: updatedProduct.quantity_available,
@@ -238,7 +247,7 @@ export const updateProduct = (updatedProduct, authState) => dispatch => {
 
 export const deleteItemTags = (authState, itemId) => dispatch => {
   dispatch({ type: DELETE_ITEM_TAGS_START });
-  deleteData(`${process.env.REACT_APP_API_URI}item/${itemId}/tags`, authState)
+  deleteData(`${process.env.REACT_APP_API_URI}/item/${itemId}/tags`, authState)
     .then(response => {
       dispatch({ type: DELETE_ITEM_TAGS_SUCCESS, payload: response });
     })
@@ -246,4 +255,29 @@ export const deleteItemTags = (authState, itemId) => dispatch => {
       dispatch({ type: DELETE_ITEM_TAGS_ERROR, payload: err });
       return err;
     });
+};
+
+// I decided to mimic request like behavior for the cart like this in order to keep consistent with our Redux flow.
+// It was either create an anti pattern by interacting with our data management in a way inconsistent with the rest
+// Or implement it in mimicry of the rest of the data implementations by making the shopping cart state a redundant
+// extension of the localstorage. I decided that being redundant and consistent was better for maintainability.
+
+export const fetchShoppingCart = () => dispatch => {
+  dispatch({ type: FETCH_SHOPPING_CART_START });
+
+  var cart = localStorage.getItem('active_cart');
+
+  if (cart) {
+    dispatch({ type: FETCH_SHOPPING_CART_END, payload: JSON.parse(cart) });
+  } else {
+    dispatch({ type: FETCH_SHOPPING_CART_END, payload: [] });
+  }
+};
+
+export const editShoppingCart = newCart => dispatch => {
+  dispatch({ type: SHOPPING_CART_EDIT_START });
+
+  localStorage.setItem('active_cart', JSON.stringify(newCart));
+
+  dispatch({ type: SHOPPING_CART_EDIT_END, payload: newCart });
 };
