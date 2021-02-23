@@ -2,14 +2,14 @@ import { useOktaAuth } from '@okta/okta-react';
 import React, { useEffect, useState } from 'react';
 import { getDSData } from '../../../api';
 import ProductCarousel from '../ProductPage/ProductCarousel';
-import { Rate, Avatar, Tag } from 'antd';
+import { Rate, Avatar, Tag, InputNumber, Button } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
 
 const ProductInfo = ({ item }) => {
   const [img, setImg] = useState('');
   const { authState } = useOktaAuth();
   const imgGet = id => {
-    getDSData(`${process.env.REACT_APP_API_URI}photo/${id}`, authState)
+    getDSData(`${process.env.REACT_APP_API_URI}/photo/${id}`, authState)
       .then(res => setImg(res[0]['url']))
       .catch(err => {
         console.log('Img get fail.');
@@ -18,6 +18,9 @@ const ProductInfo = ({ item }) => {
   useEffect(() => {
     imgGet(item.id);
   }, []);
+  console.log(item);
+
+  const addToCart = () => {};
 
   let dollars = item.price_in_cents / 100;
   return (
@@ -50,6 +53,8 @@ const ProductInfo = ({ item }) => {
               <h2 style={{ color: 'red' }}>QTY: {item.quantity_available}</h2>
             )}
           </section>
+          <InputNumber size="small" min={0} defaultValue={1} />
+          <Button>Add to cart</Button>
         </div>
       </div>
       <section className="tags-container">
