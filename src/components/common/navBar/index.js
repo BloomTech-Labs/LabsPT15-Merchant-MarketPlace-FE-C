@@ -20,7 +20,7 @@ function NavBar({ searchVisible, data, setData }) {
         <Link to="/buyerprofile">Buyer Profile</Link>
         <Link to="/myprofile/inventory">Inventory</Link>
         <Link>Orders</Link>
-        <Link>Payment</Link>
+        {/* <Link>Payment</Link> */}
         <Link>Messages</Link>
       </div>
       <SearchBar searchVisible={searchVisible} setData={setData} data={data} />
