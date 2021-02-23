@@ -6,11 +6,15 @@
     top: 0;
     z-index: 4;
     align-items: center;
+   
+    
 }
 .nav{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
+    border: 2px solid rgb(0, 140, 255);
 }
 
 .logo{
@@ -22,15 +26,20 @@
     padding-left: 40px;
     font-weight: 400;
     color: black;
-    font-size: smaller
+    font-size: smaller;
+    border: 2px solid rgb(255, 115, 0);
+
 }
 
 .logo > span {
     color: rebeccapurple;
+    
 }
 .nav > a{
     color: white;
     margin-left: 15px;
+    /* border: 2px solid rgb(99, 182, 99); */
+
 }
 .nav > a:hover{
     font-weight: bold;
