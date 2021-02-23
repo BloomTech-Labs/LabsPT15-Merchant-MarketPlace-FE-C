@@ -30,6 +30,7 @@ import { TestItemImageUpload } from './components/common';
 // Buyer Imports
 import BuyerProfile from './components/buyerPages/buyerProfile';
 import LetsShop from './components/buyerPages/letsShop';
+import ShoppingCart from './components/common/shoppingCart/ShoppingCart';
 
 const store = createStore(reducer, compose(applyMiddleware(thunk)));
 
@@ -91,6 +92,7 @@ function App() {
           path="/buyerprofile/lets_shop"
           component={LetsShop}
         />
+        <SecureRoute path="/myprofile/shoppingcart" component={ShoppingCart} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
