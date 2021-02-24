@@ -6,7 +6,7 @@ import Specifications from './newItem/specifications';
 import AddPhotos from './newItem/photos';
 import Finalize from './newItem/review_product';
 import ProgressBar from '../../common/progressBar/progressBar';
-import NavBar from '../../common/navBar';
+import BuyerNavBar from '../../common/buyerNavBar';
 import { addProduct, addItemImage } from '../../../state/actions/index';
 import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
@@ -47,7 +47,7 @@ function Inventory({ addProduct, addItemImage }) {
 
   return (
     <>
-      <NavBar />
+      <BuyerNavBar />
       <div className="outerContainer">
         <div className="formContainer">
           <ProgressBar percent={progressPoint} status={progressStatus} />

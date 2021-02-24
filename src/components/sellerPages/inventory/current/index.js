@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { fetchProducts } from '../../../../state/actions';
 import { Link } from 'react-router-dom';
 
-import NavBar from '../../../common/navBar';
+import BuyerNavBar from '../../../common/buyerNavBar';
 import SearchResults from './searchResults';
 import useSearch from '../../../common/customHooks/useSearch';
 
@@ -21,7 +21,7 @@ function CurrentInventory({ inventory, fetchProducts, getProductsStatus }) {
   // console.log(inventory);
   return (
     <>
-      <NavBar searchVisible={false} setData={setSearchData} />
+      <BuyerNavBar searchVisible={false} setData={setSearchData} />
       <div className="outerContainer">
         <div className="contents">
           <SearchResults data={inventory} filter={searchData} />
