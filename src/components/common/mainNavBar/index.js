@@ -2,19 +2,21 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Badge } from 'antd';
 import { Button } from '../../common';
-import './mainNavBar.css';
+import '../navBar/navStyles.css';
 import { useOktaAuth } from '@okta/okta-react';
 
 function MainNavBar() {
   const { authState, authService } = useOktaAuth();
 
   return (
-    <div className="nav-bar">
-      {/* logo */}
-      <div className="logo">
-        <span>MERCHANT</span> MARKETPLACE
-      </div>
-      <div className="menu">
+    <div className="nav-container">
+      <div className="nav">
+        <div className="logo">
+          {/* <NavLink to="/" activeStyle={{ color: 'black' }}> */}
+          <span style={{ color: 'rebeccapurple' }}>MERCHANT</span> MARKETPLACE
+          {/* </NavLink> */}
+        </div>
+
         {authState.isAuthenticated && (
           <NavLink
             className="link"

@@ -20,6 +20,7 @@ svg{
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    color: white;
 }
 
 .logo{
@@ -38,4 +39,5 @@ svg{
     width: 60%;
     display: flex;
     justify-content: space-evenly;
+    color: white;
 }

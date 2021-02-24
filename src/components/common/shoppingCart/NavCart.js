@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Badge } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
+
 import cartReducer from '../../../utils/cartQuantityReducer';
 
 function ShoppingCart({ cart }) {
@@ -11,9 +12,9 @@ function ShoppingCart({ cart }) {
   const quantity = cartReducer(cart);
 
   return (
-    <Badge count={quantity} showZero>
+    <Badge style={{ background: 'rebeccapurple' }} count={quantity} showZero>
       <Link to="/myprofile/shoppingcart">
-        <ShoppingCartOutlined />
+        <ShoppingCartOutlined style={{ color: 'white' }} />
       </Link>
     </Badge>
   );
