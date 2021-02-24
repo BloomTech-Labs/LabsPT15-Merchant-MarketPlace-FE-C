@@ -1,13 +1,26 @@
 import { useOktaAuth } from '@okta/okta-react';
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { getDSData } from '../../../api';
 import ProductCarousel from '../ProductPage/ProductCarousel';
 import { Rate, Avatar, Tag, InputNumber, Button } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
+import { editShoppingCart } from '../../../state/actions';
+import ShoppingCart from '../../common/shoppingCart/ShoppingCart';
 
-const ProductInfo = ({ item }) => {
+const ProductInfo = ({ item, cart, editShoppingCart }) => {
   const [img, setImg] = useState('');
   const { authState } = useOktaAuth();
+  const [quantity, setQuantity] = useState(1);
+  const [cartObj, setCartObj] = useState({
+    id: undefined,
+    img: '',
+    item_name: '',
+    desc: '',
+    quantity: 0,
+    price_in_cents: undefined,
+    seller_id: '',
+  });
   const imgGet = id => {
     getDSData(`${process.env.REACT_APP_API_URI}/photo/${id}`, authState)
       .then(res => setImg(res[0]['url']))
@@ -17,10 +30,44 @@ const ProductInfo = ({ item }) => {
   };
   useEffect(() => {
     imgGet(item.id);
+    console.log(cart);
   }, []);
-  console.log(item);
 
-  const addToCart = () => {};
+  useEffect(() => {
+    setCartObj({
+      id: item.id,
+      img: img,
+      item_name: item.item_name,
+      desc: item.desc,
+      quantity: quantity,
+      price_in_cents: item.price_in_cents,
+      seller_id: item.seller_id,
+    });
+  }, [quantity, img]);
+
+  const addToCart = () => {
+    console.log(cartObj);
+    var match = false;
+
+    cart.forEach((item, i) => {
+      if (item.id === cartObj.id) {
+        match = true;
+        if (cartObj.quantity === 0) {
+          //remove from cart array
+        } else {
+          cart[i] = cartObj;
+        }
+      }
+    });
+
+    console.log('match: ', match);
+    if (!match) {
+      cart.push(cartObj);
+    }
+    console.log('cart: ', cart);
+
+    editShoppingCart(cart);
+  };
 
   let dollars = item.price_in_cents / 100;
   return (
@@ -53,8 +100,14 @@ const ProductInfo = ({ item }) => {
               <h2 style={{ color: 'red' }}>QTY: {item.quantity_available}</h2>
             )}
           </section>
-          <InputNumber size="small" min={0} defaultValue={1} />
-          <Button>Add to cart</Button>
+          <InputNumber
+            size="small"
+            min={0}
+            defaultValue={quantity}
+            max={item.quantity_available}
+            onChange={value => setQuantity(value)}
+          />
+          <Button onClick={addToCart}>Add to cart</Button>
         </div>
       </div>
       <section className="tags-container">
@@ -67,4 +120,8 @@ const ProductInfo = ({ item }) => {
   );
 };
 
-export default ProductInfo;
+const mapStateToProps = state => ({
+  cart: state.shoppingCart.cart,
+});
+
+export default connect(mapStateToProps, { editShoppingCart })(ProductInfo);
