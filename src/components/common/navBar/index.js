@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Badge } from 'antd';
+import NavCart from '../shoppingCart/NavCart';
 
 import { Button } from '../../common';
 import './navStyles.css';
@@ -23,6 +24,7 @@ function NavBar({ searchVisible, data, setData }) {
         <Link>Orders</Link>
         <Link>Payment</Link>
         <Link>Messages</Link>
+        <NavCart />
         <Button handleClick={() => authService.logout()} buttonText="Logout" />
       </div>
       <SearchBar searchVisible={searchVisible} setData={setData} data={data} />
