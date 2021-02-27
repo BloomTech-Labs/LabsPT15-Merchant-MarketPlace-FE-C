@@ -6,8 +6,10 @@ import {
   SHOPPING_CART_EDIT_END,
 } from '../actions/index';
 
+let active_cart = JSON.parse(localStorage.getItem('active_cart'));
+
 const initialState = {
-  cart: [],
+  cart: active_cart ? active_cart : [],
   status: requestStatus.ready,
 };
 
