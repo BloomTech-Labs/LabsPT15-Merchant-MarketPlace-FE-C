@@ -1,0 +1,21 @@
+.img-container{
+    width: 35%;
+    margin: 0 1rem;
+}
+.ant-list-item{
+    padding: 0;
+    display: flex;
+}
+.ant-list-item-meta{
+    margin: 1rem 1rem 1rem .1rem;
+    display: flex;
+    flex-direction: column;
+}
+.item-details{
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+img{
+    width: 100%;
+}

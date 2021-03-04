@@ -2,25 +2,15 @@ import { useOktaAuth } from '@okta/okta-react';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getDSData } from '../../../api';
-import ProductCarousel from '../ProductPage/ProductCarousel';
 import { Rate, Avatar, Tag, InputNumber, Button } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
 import { editShoppingCart } from '../../../state/actions';
-import ShoppingCart from '../../common/shoppingCart/ShoppingCart';
 
 const ProductInfo = ({ item, cart, editShoppingCart }) => {
   const [img, setImg] = useState('');
   const { authState } = useOktaAuth();
   const [quantity, setQuantity] = useState(1);
-  const [cartObj, setCartObj] = useState({
-    id: undefined,
-    img: '',
-    item_name: '',
-    desc: '',
-    quantity: 0,
-    price_in_cents: undefined,
-    seller_id: '',
-  });
+  const [cartObj, setCartObj] = useState(item);
   const imgGet = id => {
     getDSData(`${process.env.REACT_APP_API_URI}/photo/${id}`, authState)
       .then(res => setImg(res[0]['url']))
@@ -30,18 +20,13 @@ const ProductInfo = ({ item, cart, editShoppingCart }) => {
   };
   useEffect(() => {
     imgGet(item.id);
-    console.log(cart);
   }, []);
 
   useEffect(() => {
     setCartObj({
-      id: item.id,
+      ...item,
       img: img,
-      item_name: item.item_name,
-      desc: item.desc,
       quantity: quantity,
-      price_in_cents: item.price_in_cents,
-      seller_id: item.seller_id,
     });
   }, [quantity, img]);
 
@@ -53,18 +38,16 @@ const ProductInfo = ({ item, cart, editShoppingCart }) => {
       if (item.id === cartObj.id) {
         match = true;
         if (cartObj.quantity === 0) {
-          //remove from cart array
+          cart.splice(i, 1);
         } else {
           cart[i] = cartObj;
         }
       }
     });
 
-    console.log('match: ', match);
     if (!match) {
       cart.push(cartObj);
     }
-    console.log('cart: ', cart);
 
     editShoppingCart(cart);
   };
@@ -73,7 +56,7 @@ const ProductInfo = ({ item, cart, editShoppingCart }) => {
   return (
     <div className="product-page">
       <div className="product-container">
-        <div>
+        <div className="img-container">
           {/* <ProductCarousel /> */}
           {/* {The carrousel avobe can be implemented later} */}
           <img src={img} />

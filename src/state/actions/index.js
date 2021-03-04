@@ -277,7 +277,6 @@ export const fetchShoppingCart = () => dispatch => {
 export const editShoppingCart = newCart => dispatch => {
   dispatch({ type: SHOPPING_CART_EDIT_START });
 
-  console.log('editShoppingCart: ', newCart);
   localStorage.setItem('active_cart', JSON.stringify(newCart));
 
   dispatch({ type: SHOPPING_CART_EDIT_END, payload: newCart });
